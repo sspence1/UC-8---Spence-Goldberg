@@ -1,7 +1,7 @@
 // This is the varaible that stores the score.
 // score[0] = wins, score[1] = ties, score[2] = losses
-var score = [0,0,0];
-
+var scoreMatch = [0,0,0];
+var scoreTotal = [0,0,0];
 // The variables store the current player's and computer's choices
 // 0 = Rock, 1 = Paper, 2 = Scissors, 3 = Lizard, 4 = Spock
 var playerChoice;
@@ -41,15 +41,21 @@ function playGame(){
     }
 }
 
-function displayScoreBoard(winsId, lossesId, tiesId){
-    document.getElementById(winsId).innerHTML = score[0];
-    document.getElementById(lossesId).innerHTML = score[2];
-    document.getElementById(tiesId).innerHTML = score[1];
+function displayScoreBoard(matchWinsId, matchLossesId, matchTiesId) {
+    document.getElementById(matchWinsId).innerHTML = scoreMatch[0];
+    document.getElementById(matchLossesId).innerHTML = scoreMatch[2];
+    document.getElementById(matchTiesId).innerHTML = scoreMatch[1];
 }
 
-function updateScore(val){
-    ++score[val];
-    console.log("The score is now " + score);
+
+function updateMatchScore(val){
+    ++scoreMatch[val];
+    console.log("The match score is now " + scoreMatch);
+}
+
+function updateTotalScore(val){
+    ++scoreTotal[val];
+    console.log("The total score is now " + scoreTotal);
 }
 
 function displayGameResult(resultId){
@@ -62,17 +68,17 @@ function displayGameResult(resultId){
     // Add to the base message if it was a win, loss, or tie
     if (result == 1) {
         // Display that it was a win
-        updateScore(0);
+        updateMatchScore(0);
         document.getElementById(resultId).innerHTML = message + "YOU WIN!";
         document.getElementById(resultId).className = "alert alert-success";
     } else if (result == -1) {
-        updateScore(2);
+        updateMatchScore(2);
         // Display that it was a loss
         document.getElementById(resultId).innerHTML = message + "YOU LOOSE! ";
         document.getElementById(resultId).className = "alert alert-danger";
     } else {
         // Display that it was a tie
-        updateScore(1);
+        updateMatchScore(1);
         document.getElementById(resultId).innerHTML = message + "A tie. ";
         document.getElementById(resultId).className = "alert alert-info";
     }
@@ -88,4 +94,13 @@ function storeComputerChoice() {
     // Generate computer's random choice
     computerChoice = Math.floor(Math.random()*5);
     console.log("Computer choice = " + computerChoice);
+}
+
+function recordTotalScore(scoreMatch);{
+    //if scorematch[0] is grter than 1, need to update total score[0] to add 1
+    if (scoreMatch[0] > 1) {
+       ++scoreTotal[1];
+    //} else if (scoreMatch[1] > 1) {
+       // updateTotalScore([1]);
+    }
 }
