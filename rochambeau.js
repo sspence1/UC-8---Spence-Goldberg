@@ -41,10 +41,16 @@ function playGame(){
     }
 }
 
-function displayScoreBoard(matchWinsId, matchLossesId, matchTiesId) {
+function displayMatchScoreBoard(matchWinsId, matchLossesId, matchTiesId) {
     document.getElementById(matchWinsId).innerHTML = scoreMatch[0];
     document.getElementById(matchLossesId).innerHTML = scoreMatch[2];
     document.getElementById(matchTiesId).innerHTML = scoreMatch[1];
+}
+
+function displayTotalScoreBoard(totalWinsId, totalLossesId, totalTiesId) {
+    document.getElementById(totalWinsId).innerHTML = scoreMatch[0];
+    document.getElementById(totalLossesId).innerHTML = scoreMatch[2];
+    document.getElementById(totalTiesId).innerHTML = scoreMatch[1];
 }
 
 
@@ -84,6 +90,33 @@ function displayGameResult(resultId){
         document.getElementById(resultId).className = "alert alert-info";
     }
 }
+
+function displayTotalGameResult(resultId){
+    // Define an array of text labels for the choices 0, 1, 2;
+    var choices = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
+    // Now play the game and store the result
+    var result = playGame();
+    // Create a message for the player
+    var message = "Your choice was " + choices[playerChoice] + " and the computer's choice was " + choices[computerChoice] + "<br/>";
+    // Add to the base message if it was a win, loss, or tie
+    if (result == 1) {
+        // Display that it was a win
+        updateTotalScore(0);
+        document.getElementById(resultId).innerHTML = message + "YOU WIN!";
+        document.getElementById(resultId).className = "alert alert-success";
+    } else if (result == -1) {
+        updateTotalScore(2);
+        // Display that it was a loss
+        document.getElementById(resultId).innerHTML = message + "YOU LOOSE! ";
+        document.getElementById(resultId).className = "alert alert-danger";
+    } else {
+        // Display that it was a tie
+        updateTotalScore(1);
+        document.getElementById(resultId).innerHTML = message + "A tie. ";
+        document.getElementById(resultId).className = "alert alert-info";
+    }
+}
+
 
 function storePlayerChoice(choice) {
     playerChoice = choice;
