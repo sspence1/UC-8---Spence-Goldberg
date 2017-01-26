@@ -48,6 +48,7 @@ function displayScoreBoard(matchWinsId, matchLossesId, matchTiesId) {
 }
 
 
+
 function updateMatchScore(val){
     ++scoreMatch[val];
     console.log("The match score is now " + scoreMatch);
@@ -96,11 +97,3 @@ function storeComputerChoice() {
     console.log("Computer choice = " + computerChoice);
 }
 
-function recordTotalScore(scoreMatch);{
-    //if scorematch[0] is grter than 1, need to update total score[0] to add 1
-    if (scoreMatch[0] > 1) {
-       ++scoreTotal[1];
-    //} else if (scoreMatch[1] > 1) {
-       // updateTotalScore([1]);
-    }
-}
