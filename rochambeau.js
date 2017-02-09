@@ -57,14 +57,26 @@ function displayTotalScoreBoard(totalWinsId, totalLossesId, totalTiesId) {
 
 function updateMatchScore(val){
     ++scoreMatch[val];
-    console.log("The match score is now " + scoreMatch);
-}
+     if (scoreMatch[0] == 2) {
+         ++scoreTotal[0];
+         scoreMatch = [0,0,0];
+     } else if (scoreMatch[2] == 2) {
+        ++scoreTotal[2];
+        scoreMatch = [0,0,0];
+    }
 
-function updateTotalScore(val){
-    ++scoreTotal[val];
+    console.log("The match score is now " + scoreMatch);
     console.log("The total score is now " + scoreTotal);
 }
 
+/*
+function updateTotalScore(val){
+    if (scoreMatch[0] == 2 || scoreMatch[1] == 2) {
+        ++scoreTotal[val];
+    }
+    console.log("The total score is now " + scoreTotal);
+}
+*/
 function displayGameResult(resultId){
     // Define an array of text labels for the choices 0, 1, 2;
     var choices = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
@@ -91,6 +103,7 @@ function displayGameResult(resultId){
     }
 }
 
+/*
 function displayTotalGameResult(resultId){
     // Define an array of text labels for the choices 0, 1, 2;
     var choices = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
@@ -116,7 +129,7 @@ function displayTotalGameResult(resultId){
         document.getElementById(resultId).className = "alert alert-info";
     }
 }
-
+*/
 
 function storePlayerChoice(choice) {
     playerChoice = choice;
